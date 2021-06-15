@@ -1,8 +1,8 @@
-10
+
+# here::here betyder at kigge længere op i filrækken, til hvor parantesfilen er
 source(here::here("R/package-loading.R"))
 
 # Basics of R -------------------------------------------------------------
-
 
 weight_kilos <- 100
 weight_kilos
