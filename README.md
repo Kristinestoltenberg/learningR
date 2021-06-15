@@ -1,4 +1,4 @@
-# LearningR: practicing awsomeness
+# LearningR: practicing amazingness 🦖
 
 This is for the DDA R course 
 
