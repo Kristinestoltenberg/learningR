@@ -1,5 +1,7 @@
 # LearningR: practicing awsomeness
 
+This is for the DDA R course 
+
 TODO: Give a brief description of what your project is about
 
 This project...
