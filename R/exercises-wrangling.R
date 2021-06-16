@@ -104,3 +104,26 @@ nhanes_update <- nhanes_small %>%
            if_else(phys_active_days >= 5, "yes", "no"))
 
 str(nhanes_update)
+
+#9.14 Split-apply-combine: Summarizing data - summary statistics
+#Let’s calculate the maximum value of the BMI variable
+nhanes_small %>%
+    summarise(max_bmi = max(bmi))
+
+#NA betyder missing value
+
+nhanes_small %>%
+    summarise(max_bmi = max(bmi, na.rm = TRUE))
+
+# calculate missing values
+nhanes_small %>%
+    summarise(sum.na = sum(is.na(bmi)))
+
+#Se på output efter kørsel af denne og se på NA under hver kolonne
+summary(nhanes_small)
+
+#To calculate another summary statistic, you would add another summary column using ,
+nhanes_small %>%
+    summarise(max_bmi = max(bmi, na.rm = TRUE),
+              min_bmi = min(bmi, na.rm = TRUE))
+
