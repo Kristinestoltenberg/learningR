@@ -32,7 +32,75 @@ nhanes_small %>%
     select(phys_active_days, phys_active) %>%
     rename(days_phys_active = phys_active_days)
 
-#filtering data by row
+#9.10 filtering data by row
 nhanes_small %>%
     filter(sex == "female")
+nhanes_small %>%
+    filter(sex != "female")
 
+#filtering by BMI equals 25
+nhanes_small %>%
+    filter(bmi == 25)
+
+# BMI on 25 or larger
+nhanes_small %>%
+    filter(bmi >= 25)
+
+## When BMI is 25 and larger AND sex is female
+nhanes_small %>%
+    filter(bmi >= 25 & sex == "female")
+
+# When BMI is above 25 OR sex is female
+nhanes_small %>%
+    filter(bmi > 25 | sex == "female")
+
+# Arranging data by age in ascending order
+nhanes_small %>%
+    arrange(age)
+
+# Arranging data by sex (happens alphabetical order, so females first)
+nhanes_small %>%
+    arrange(sex)
+
+# Arranging data by age in descending order
+nhanes_small %>%
+    arrange(desc(age))
+
+# Arranging data by sex then age in ascending order
+nhanes_small %>%
+    arrange(sex, age)
+
+#test with decending sex and age in ascending
+nhanes_small %>%
+    arrange(desc(sex), age)
+
+#9.12 Transform or add columns
+#transform hight cm into meters
+
+nhanes_small %>%
+    mutate(height = height / 100)
+
+#We can also create a new column (e.g., log transforming height):
+
+nhanes_small %>%
+    mutate(logged_height = log(height))
+
+#add multiple modifications or additions with mutate() by separating them with ,
+
+nhanes_small %>%
+    mutate(height = height / 100,
+           logged_height = log(height))
+
+#We can also have different values based on logic conditions using if_else().
+
+nhanes_small %>%
+    mutate(heighly_active = if_else(phys_active_days >= 5, "yes", "no"))
+
+#Recall that the original dataset doesn’t change. If we want the added variable to be saved, we must assign it to something with <-
+
+nhanes_update <- nhanes_small %>%
+    mutate(height = height / 100,
+           logged_height = log(height),
+           if_else(phys_active_days >= 5, "yes", "no"))
+
+str(nhanes_update)
