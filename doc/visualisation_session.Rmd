@@ -1,0 +1,54 @@
+---
+title: "data_visualisation"
+author: "Kristine Stoltenberg Addington"
+date: "6/17/2021"
+output: html_document
+---
+```{r}
+# Load packages
+source(here::here("R/package-loading.R"))
+
+# Load the small, tidied dataset from the wrangling session
+load(here::here("data/nhanes_small.rda"))
+
+```
+
+# One variable plots 
+
+```{r continuous-variables}
+# Create density plot for BMI
+ggplot(nhanes_small, aes (x = bmi)) +
+    geom_density()
+
+# Create histogram for BMI
+ggplot(nhanes_small, aes(x = bmi)) +
+    geom_histogram()
+```
+
+
+```{r descrete variables}
+# Create count barplot for sex
+ggplot(nhanes_small, aes(x = sex)) +
+    geom_bar()
+
+# Create count barplot for diabetes status
+ggplot(nhanes_small, aes(x = diabetes)) +
+    geom_bar()
+
+```
+
+
+```{r remove missing diabetes}
+# Remove individuals with missing diabetes status
+nhanes_tidied <- nhanes_small %>% 
+    filter(!is.na(diabetes))
+
+# Save the tidied dataset as an rda file in the data folder
+usethis::use_data(nhanes_tidied, overwrite = TRUE)
+
+# Create a new count barplot for diabetes status
+ggplot(nhanes_tidied, aes(x = diabetes)) +
+    geom_bar()
+
+```
+
